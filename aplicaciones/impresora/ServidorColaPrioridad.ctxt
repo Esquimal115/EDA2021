@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=ServidorColaPrioridad
+comment1.params=
+comment1.target=ServidorColaPrioridad()
+comment2.params=t
+comment2.target=void\ insertar(Trabajo)
+comment3.params=
+comment3.target=boolean\ hayTrabajos()
+comment4.params=
+comment4.target=Trabajo\ getTrabajo()
+comment5.params=
+comment5.target=int\ imprimirTrabajo()
+numComments=6

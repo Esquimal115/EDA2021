@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=TestMonticuloBinarioR0
+comment1.params=
+comment1.target=TestMonticuloBinarioR0()
+comment10.params=
+comment10.target=boolean\ testMonticulo()
+comment11.params=args
+comment11.target=void\ main(java.lang.String[])
+comment2.params=m\ talla
+comment2.target=void\ checkTalla(MonticuloBinarioR0,\ int)
+comment3.params=m\ talla
+comment3.target=void\ checkDuplicar(MonticuloBinarioR0,\ int)
+comment4.params=m\ v\ error
+comment4.target=void\ checkArray(MonticuloBinarioR0,\ java.lang.Integer[],\ java.lang.String)
+comment5.params=m
+comment5.target=void\ testInsertar(MonticuloBinarioR0)
+comment6.params=m
+comment6.target=void\ testEliminar(MonticuloBinarioR0)
+comment7.params=
+comment7.target=MonticuloBinarioR0\ iniciarMonticulo()
+comment8.params=
+comment8.target=MonticuloBinarioR0\ iniciarNoMonticulo()
+comment9.params=
+comment9.target=boolean\ testHundir()
+numComments=12

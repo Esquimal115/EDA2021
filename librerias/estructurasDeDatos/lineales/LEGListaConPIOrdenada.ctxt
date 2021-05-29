@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=LEGListaConPIOrdenada
+comment1.params=
+comment1.target=LEGListaConPIOrdenada()
+comment2.params=e
+comment2.target=void\ insertar(java.lang.Object)
+comment3.params=o
+comment3.target=int\ compareTo(NodoLEG)
+numComments=4

@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=TestGrafo
+comment1.params=
+comment1.target=TestGrafo()
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment3.params=test\ res
+comment3.target=boolean\ validar(java.lang.String,\ java.lang.String)
+comment4.params=
+comment4.target=java.lang.String\ testArista()
+comment5.params=
+comment5.target=java.lang.String\ testSTNoConexo()
+comment6.params=
+comment6.target=java.lang.String\ testSTConexo()
+numComments=7

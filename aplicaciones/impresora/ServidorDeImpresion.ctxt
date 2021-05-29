@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=ServidorDeImpresion
+comment1.params=var1
+comment1.target=void\ insertar(Trabajo)
+comment2.params=
+comment2.target=boolean\ hayTrabajos()
+comment3.params=
+comment3.target=Trabajo\ getTrabajo()
+comment4.params=
+comment4.target=int\ imprimirTrabajo()
+numComments=5
