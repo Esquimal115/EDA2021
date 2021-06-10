@@ -1,9 +1,13 @@
 package librerias.estructurasDeDatos.grafos;
 
+import librerias.estructurasDeDatos.jerarquicos.MonticuloBinarioR0;
 import librerias.estructurasDeDatos.lineales.LEGListaConPI;
 import librerias.estructurasDeDatos.modelos.Cola;
+import librerias.estructurasDeDatos.modelos.ColaPrioridad;
 import librerias.estructurasDeDatos.modelos.ListaConPI;
 import librerias.estructurasDeDatos.lineales.ArrayCola;
+import librerias.estructurasDeDatos.jerarquicos.ForestUFSet;
+import librerias.estructurasDeDatos.modelos.UFSet;
 
 // EN LA SEGUNDA SESION: incluir los siguientes import: 
 /*import librerias.estructurasDeDatos.modelos.UFSet;
@@ -25,7 +29,7 @@ public abstract class Grafo {
     protected int[] visitados;    // Nodos visitados en un Recorrido
     protected int ordenVisita;    // Orden de visita de nodos en un Recorrido
     protected Cola<Integer> q;    // Cola para un Recorrido BFS
-
+    int invocaKruskal;
     
     /** Crea un grafo vacio, Dirigido si dirigido es true
       * o No Dirigido en caso contrario.
@@ -126,6 +130,7 @@ public abstract class Grafo {
         }
         return res;
     }
+
     // Recorrido BFS del vertice origen, que almacena en res
     // su resultado
     protected void toArrayBFS(int origen, int[] res) { 
@@ -156,7 +161,7 @@ public abstract class Grafo {
      */ 
     public Arista[] arbolRecubrimientoBFS() {
         /*COMPLETAR*/
-        
+
         Arista[] res = new Arista[numVertices()-1];
         visitados = new int[numVertices()];
         int auxVis = 0;
@@ -186,8 +191,33 @@ public abstract class Grafo {
         return res;       
     }
 
+    public boolean esConexo() {
+        boolean[] connected = new boolean[numVertices()];
+        ListaConPI<Integer> lista = new LEGListaConPI<>();
+        int verticesConnected = 1;
 
-    
+        connected[0] = true;
+        lista.insertar(0);
+
+        while (!lista.esVacia()) {
+            lista.inicio();
+            int i = lista.recuperar();
+            lista.eliminar();
+
+            ListaConPI<Adyacente> listaAdyacentes = adyacentesDe(i);
+
+            for (listaAdyacentes.inicio(); !listaAdyacentes.esFin(); listaAdyacentes.siguiente()) {
+                int v = listaAdyacentes.recuperar().destino;
+                if (!connected[v]) {
+                    connected[v] = true;
+                    verticesConnected++;
+                    lista.insertar(v);
+                }
+            }
+        }
+        return verticesConnected == numVertices();
+    }
+
     
     /** PRECONDICION: !this.esDirigido()
       * Devuelve un subconjunto de aristas que, con coste minimo,  
@@ -197,9 +227,45 @@ public abstract class Grafo {
       * @return Arista[], array con las numV - 1 aristas que conectan 
       *                   los numV vertices con coste minimo, o null 
       *                   si el grafo no es Conexo
-     */ 
-    public Arista[] kruskal() {       
-        /*COMPLETAR EN LA SEGUNDA SESION*/
-        return null;
+     */
+
+
+    public Arista[] kruskal() {
+
+        int aux = 0;
+        Arista[] res = new Arista[numVertices()-1];
+        ColaPrioridad<Arista> aristasFactibles;
+
+        UFSet cc = new ForestUFSet(numVertices());
+        aristasFactibles = getAristasFactiblesKruskal();
+
+        while (aux<numVertices()-1 && !aristasFactibles.esVacia()){
+            Arista arista = aristasFactibles.eliminarMin();
+            int origen = arista.getOrigen();
+            int destino = arista.getDestino();
+            int ccV = cc.find(origen);
+            int ccW = cc.find(destino);
+            if(ccV != ccW){
+                cc.union(ccV,ccW);
+                res[aux++]=arista;
+            }
+        }
+        if (aux == numVertices()-1){
+            return res;}
+        else
+            return null;
+
+    }
+    private ColaPrioridad<Arista> getAristasFactiblesKruskal() {
+        ColaPrioridad<Arista> aristasFactibles = new MonticuloBinarioR0<>();
+
+        for(int i = 0; i<numVertices();i++) {
+            ListaConPI<Adyacente> l = adyacentesDe(i);
+            for(l.inicio(); !l.esFin(); l.siguiente()) {
+                Adyacente ady = l.recuperar();
+                aristasFactibles.insertar(new Arista(i,ady.getDestino(),ady.getPeso()));
+            }
+        }
+        return aristasFactibles;
     }
 }

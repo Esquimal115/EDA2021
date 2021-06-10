@@ -5,7 +5,7 @@ package librerias.estructurasDeDatos.grafos;
  *  @version Mayo 2018
  */
  
-public class Arista {
+public class Arista implements Comparable<Arista> {
     
     // UNA Arista TIENE UN vertice origen y UN vertice destino:
     /*COMPLETAR*/
@@ -63,5 +63,11 @@ public class Arista {
     public String toString() {
         // COMPLETAR
         return "("+ origen +", " + destino + ", " + peso + ")";
+    }
+
+    public int compareTo(Arista v){
+        if(peso > v.getPeso()){ return 1; }
+        else if(peso < v.getPeso()){ return -1; }
+        else{return 0;}
     }
 }
